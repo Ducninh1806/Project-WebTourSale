@@ -1,5 +1,7 @@
 package com.ducninh.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,7 @@ public class Activity {
 
     private String activity;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "activities")
     private Set<Tour> tours = new HashSet<>();
 

@@ -1,5 +1,7 @@
 package com.ducninh.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class UserTourGuide {
     private String email;
     private String address;
 
+    @JsonIgnore
     @OneToMany(targetEntity = Tour.class)
     private List<Tour> tours;
 

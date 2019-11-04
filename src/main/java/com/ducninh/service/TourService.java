@@ -2,6 +2,7 @@ package com.ducninh.service;
 
 import com.ducninh.model.Tour;
 
+
 public interface TourService {
 
     Iterable<Tour> findAll();

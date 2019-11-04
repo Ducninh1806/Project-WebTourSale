@@ -5,6 +5,7 @@ import com.ducninh.repository.TourRepository;
 import com.ducninh.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 public class TourServiceImpl implements TourService {
 
     @Autowired
@@ -29,4 +30,7 @@ public class TourServiceImpl implements TourService {
     public void remove(Long id) {
         tourRepository.delete(id);
     }
+
+
+
 }

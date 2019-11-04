@@ -1,5 +1,7 @@
 package com.ducninh.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,11 +14,22 @@ public class Tour {
 
     private String titleTour;
     private int isDate;
+
+    @Lob
     private String content;
+
     private Long price;
+
+    @Lob
     private String tourPriceIncluded;
+
+    @Lob
     private String tourPriceIsNotIncluded;
+
+    @Lob
     private String tourPriceOfChildren;
+
+    @Lob
     private String surcharge;
 
     @ManyToOne
@@ -27,6 +40,7 @@ public class Tour {
     @JoinColumn(name = "userTourGuideId")
     private UserTourGuide userTourGuide;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tour_activity",
             joinColumns = @JoinColumn(name = "tour_id", referencedColumnName = "id"),
