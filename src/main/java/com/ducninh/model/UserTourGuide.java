@@ -1,6 +1,7 @@
 package com.ducninh.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "userTourGuide")
@@ -16,6 +17,9 @@ public class UserTourGuide {
     private String password;
     private String email;
     private String address;
+
+    @OneToMany(targetEntity = Tour.class)
+    private List<Tour> tours;
 
     public UserTourGuide() {
     }
@@ -83,5 +87,13 @@ public class UserTourGuide {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Tour> getTours() {
+        return tours;
+    }
+
+    public void setTours(List<Tour> tours) {
+        this.tours = tours;
     }
 }

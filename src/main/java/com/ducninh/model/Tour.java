@@ -1,6 +1,7 @@
 package com.ducninh.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Tour {
@@ -18,6 +19,21 @@ public class Tour {
     private String tourPriceOfChildren;
     private String surcharge;
 
+    @ManyToOne
+    @JoinColumn(name = "provinceId")
+    private Province province;
+
+    @ManyToOne
+    @JoinColumn(name = "userTourGuideId")
+    private UserTourGuide userTourGuide;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tour_activity",
+            joinColumns = @JoinColumn(name = "tour_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id", referencedColumnName = "id"))
+    private Set<Activity> activities;
+
+
     public Tour() {
     }
 
@@ -30,6 +46,20 @@ public class Tour {
         this.tourPriceIsNotIncluded = tourPriceIsNotIncluded;
         this.tourPriceOfChildren = tourPriceOfChildren;
         this.surcharge = surcharge;
+    }
+
+    public Tour(String titleTour, int isDate, String content, Long price, String tourPriceIncluded, String tourPriceIsNotIncluded, String tourPriceOfChildren, String surcharge, Province province, UserTourGuide userTourGuide, Set<Activity> activities) {
+        this.titleTour = titleTour;
+        this.isDate = isDate;
+        this.content = content;
+        this.price = price;
+        this.tourPriceIncluded = tourPriceIncluded;
+        this.tourPriceIsNotIncluded = tourPriceIsNotIncluded;
+        this.tourPriceOfChildren = tourPriceOfChildren;
+        this.surcharge = surcharge;
+        this.province = province;
+        this.userTourGuide = userTourGuide;
+        this.activities = activities;
     }
 
     public Long getId() {
@@ -102,5 +132,29 @@ public class Tour {
 
     public void setSurcharge(String surcharge) {
         this.surcharge = surcharge;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public UserTourGuide getUserTourGuide() {
+        return userTourGuide;
+    }
+
+    public void setUserTourGuide(UserTourGuide userTourGuide) {
+        this.userTourGuide = userTourGuide;
+    }
+
+    public Set<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        this.activities = activities;
     }
 }
